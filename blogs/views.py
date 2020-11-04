@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -21,7 +21,7 @@ def topics(request):
 
 @login_required()
 def topic(request, topic_id):
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     check_topic_owner(request, topic)
 
     entries = topic.entry_set.order_by('-date_added')
