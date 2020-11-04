@@ -1,0 +1,16 @@
+{% extends "blogs/base.html" %}
+
+{% block header %}
+    <div class='jumbotron'>
+        <h1>Daily Musings</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <h2>
+        <a href="{% url 'users:register' %}">Register an account</a> to make your own Bundo Blog, and write your own bundo thoughts.
+    </h2>
+    <h2>
+        Daily musings of a weird bundoo who's trying to get through this class.
+    </h2>
+{% endblock content %}

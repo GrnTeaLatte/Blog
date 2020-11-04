@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Entry</title>
+</head>
+<body>
+{% extends "blogs/base.html" %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h2>{{ topic }}</h2>
+{% endblock header %}
+
+{% block content %}
+
+    <p>Edit entry:</p>
+
+    <form action="{% url 'blogs:edit_entry' entry.id %}" method='post' class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        {% buttons %}
+            <button name="submit">save changes</button>
+        {% endbuttons %}
+    </form>
+
+{% endblock content %}
+</body>
+</html>
