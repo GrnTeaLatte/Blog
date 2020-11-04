@@ -143,9 +143,9 @@ if os.getcwd() == '/app':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     # Allow only Heroku to host the project.
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ['bundoo-blogs.herokuapp.com']
 
-    #DEBUG = True
+    DEBUG = False
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
