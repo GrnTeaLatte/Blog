@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "topic.css",
+	"sources": [
+		"topic.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,KAAK,CAAC;EACF,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,gBAAgB,GAC1B;;AAED,AAAA,KAAK,CAAC;EACF,WAAW,EAAE,IAAI,GACpB;;AAED,AAAA,EAAE,CAAC;EACC,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,IAAI,GACtB"
+}
