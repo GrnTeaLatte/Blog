@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
 {% extends "blogs/base.html" %}
 {% load bootstrap3 %}
 
-{% block header %}
-    <h2>Register an account.</h2>
-{% endblock header %}
 
 {% block content %}
-
+<div class="container">
+    <h2>Register an account.</h2>
     <form method="post" action="{% url 'users:register' %}" class="form">
         {% csrf_token %}
         {% bootstrap_form form %}
@@ -23,7 +14,7 @@
             <input type="hidden" name="next" value="{% url 'blogs:index' %}" />
         {% endbuttons %}
     </form>
-
+</div>
 {% endblock content %}
 </body>
 </html>

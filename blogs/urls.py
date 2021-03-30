@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^new_topic/$', views.new_topic, name='new_topic'),
     url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
     url(r'^edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
+    url(r'^delete_entry/(?P<entry_id>\d+)/$', views.delete_entry, name='delete_entry'),
 ]

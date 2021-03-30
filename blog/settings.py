@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'blogs',
     'users',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
 # My settings
 LOGIN_URL = '/users/login/'
 
@@ -149,7 +161,15 @@ if os.getcwd() == '/app':
 
     # Static asset configuration
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
+
+    SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+    STATICFILES_FINDERS = [
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+        'sass_processor.finders.CssFinder',
+    ]
