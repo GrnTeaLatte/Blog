@@ -1,10 +1,15 @@
-/* Container for flexboxes */
-.container {
-  display: flex;
-  float: right;
-  min-height: 1px;
-  padding-right: 20px;
-  padding-left: 15px;
+.sidebar {
+    float: left;
+    width: 200px;
 }
 
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+}
 
+.float-end {
+    float: right !important;
+}

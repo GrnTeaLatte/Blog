@@ -1,24 +1,3 @@
-/* Container for flexboxes */
-.container {
-  display: flex;
-  background-color: blue ;
-}
-
-/* Style the navigation menu */
-nav {
-  flex: 4;
-  background: #ccc;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 20px;
-}
-
-.h1, .h2, .h3, h1, h2, h3 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 210px
+h4 {
+    margin-top: 50px;
 }
