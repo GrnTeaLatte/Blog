@@ -144,12 +144,23 @@ BOOTSTRAP3 = {
     'include_jquery': True,
 }
 
+STATIC_SOURCE_ROOT = os.path.join(BASE_DIR, 'static/')
+
+STATICFILES_DIRS = [
+    STATIC_SOURCE_ROOT
+]
+
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(STATIC_SOURCE_ROOT, 'scss/')
+]
+
 # Heroku settings
 if os.getcwd() == '/app':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
     }
+    SASS_PROCESSOR_ENABLED = False
 
     # Honor the 'X-Forewarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -158,18 +169,3 @@ if os.getcwd() == '/app':
     ALLOWED_HOSTS = ['bundoo-blogs.herokuapp.com']
 
     DEBUG = False
-
-    # Static asset configuration
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-
-    SASS_PROCESSOR_ROOT = STATIC_ROOT
-
-    STATICFILES_FINDERS = [
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'sass_processor.finders.CssFinder',
-    ]
