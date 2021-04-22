@@ -1,13 +1,13 @@
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-    url('^$', views.index, name='index'),
-    url(r'^topics/$', views.topics, name='topics'),
-    url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
-    url(r'^new_topic/$', views.new_topic, name='new_topic'),
-    url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
-    url(r'^edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
-    url(r'^delete_entry/(?P<entry_id>\d+)/$', views.delete_entry, name='delete_entry'),
+    re_path('^$', views.index, name='index'),
+    re_path(r'^topics/$', views.topics, name='topics'),
+    re_path(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
+    re_path(r'^new_topic/$', views.new_topic, name='new_topic'),
+    re_path(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
+    re_path(r'^edit_entry/(?P<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
+    re_path(r'^delete_entry/(?P<entry_id>\d+)/$', views.delete_entry, name='delete_entry'),
 ]

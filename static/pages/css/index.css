@@ -15,9 +15,6 @@
 ul {
   list-style: none; }
 
-h2 {
-  color: #ffffff; }
-
 @media (min-width: 750px) {
   .bg_image {
     height: 700px; } }
@@ -114,3 +111,5 @@ section {
     margin: 0 auto 20px; }
   .footer-distributed .footer-left p.footer-links {
     line-height: 1.8; } }
+
+/*# sourceMappingURL=index.css.map */

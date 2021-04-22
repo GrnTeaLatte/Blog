@@ -1,21 +1,20 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
-
+from .utils import get_topics, check_topic_owner
 
 # Create your views here.
 
 def index(request):
     return render(request, 'blogs/index.html')
 
-
 @login_required()
 def topics(request):
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    topics = get_topics(request.user)
     context = {'topics': topics}
     return render(request, 'blogs/topics.html', context)
 
@@ -27,10 +26,6 @@ def topic(request, topic_id):
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'blogs/topic.html', context)
-
-def check_topic_owner(request, topic):
-    if topic.owner != request.user:
-        raise Http404
 
 @login_required()
 def new_topic(request):

@@ -1,10 +1,10 @@
-from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.urls import re_path
 
 from . import views
 
 urlpatterns = [
-    url(r'^login/$', auth_views.LoginView.as_view(), {'template_name': 'users/login.html'}, name='login'),
-    url(r'^logout/$', views.logout_view, name='logout'),
-    url(r'^register/$', views.register, name='register'),
+    re_path(r'^login/$', auth_views.LoginView.as_view(), {'template_name': 'users/login.html'}, name='login'),
+    re_path(r'^logout/$', views.logout_view, name='logout'),
+    re_path(r'^register/$', views.register, name='register'),
 ]
