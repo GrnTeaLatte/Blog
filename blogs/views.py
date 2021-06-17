@@ -10,9 +10,9 @@ from .utils import get_topics, check_topic_owner
 # Create your views here.
 
 def index(request):
-    context = {'recent_entries': get_recent_entries(request)}
-    return render(request, 'blogs/index.html', context)
+    return render(request, 'blogs/index.html')
 
+@login_required()
 def get_recent_entries(request):
     topics = get_topics(request.user)
     flat_entries = []
@@ -24,9 +24,11 @@ def get_recent_entries(request):
     sorted_entries = sorted(flat_entries, key=lambda entry: entry.date_added, reverse=True)
     return sorted_entries
 
+@login_required()
 def get_entries_for_topic(topic):
     return topic.entry_set.all()
 
+@login_required()
 def base_context(request):
     return {'recent_entries': get_recent_entries(request)}
 
