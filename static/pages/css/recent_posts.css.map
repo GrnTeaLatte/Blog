@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "recent_posts.css",
+	"sources": [
+		"recent_posts.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,cAAc,CAAC;EACd,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,aAAa;EACtB,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,GAAG;EAChB,KAAK,EAAE,OAAO;EACd,UAAU,EAAE,OAAO;EACnB,WAAW,EAAE,MAAM;EACnB,gBAAgB,EAAE,WAAW;EAC7B,MAAM,EAAE,CAAC,GACT"
+}

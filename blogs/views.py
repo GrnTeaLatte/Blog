@@ -10,12 +10,31 @@ from .utils import get_topics, check_topic_owner
 # Create your views here.
 
 def index(request):
-    return render(request, 'blogs/index.html')
+    context = {'recent_entries': get_recent_entries(request)}
+    return render(request, 'blogs/index.html', context)
+
+def get_recent_entries(request):
+    topics = get_topics(request.user)
+    flat_entries = []
+
+    for entries in map(get_entries_for_topic, topics):
+        for entry in entries:
+            flat_entries.append(entry)
+
+    sorted_entries = sorted(flat_entries, key=lambda entry: entry.date_added, reverse=True)
+    return sorted_entries
+
+def get_entries_for_topic(topic):
+    return topic.entry_set.all()
+
+def base_context(request):
+    return {'recent_entries': get_recent_entries(request)}
 
 @login_required()
 def topics(request):
     topics = get_topics(request.user)
     context = {'topics': topics}
+    context.update(base_context(request))
     return render(request, 'blogs/topics.html', context)
 
 @login_required()
@@ -25,6 +44,7 @@ def topic(request, topic_id):
 
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
+    context.update(base_context(request))
     return render(request, 'blogs/topic.html', context)
 
 @login_required()
@@ -40,6 +60,7 @@ def new_topic(request):
             return HttpResponseRedirect(reverse('blogs:topics'))
 
     context = {'form': form}
+    context.update(base_context(request))
     return render(request, 'blogs/new_topic.html', context)
 
 @login_required()
@@ -58,6 +79,7 @@ def new_entry(request, topic_id):
             return HttpResponseRedirect(reverse('blogs:topic', args=[topic_id]))
 
     context = {'topic': topic, 'form': form}
+    context.update(base_context(request))
     return render(request, 'blogs/new_entry.html', context)
 
 @login_required()
@@ -75,6 +97,7 @@ def edit_entry(request, entry_id):
             return HttpResponseRedirect(reverse('blogs:topic', args=[topic.id]))
 
     context = {'entry': entry, 'topic': topic, 'form': form}
+    context.update(base_context(request))
     return render(request, 'blogs/edit_entry.html', context)
 
 @login_required()

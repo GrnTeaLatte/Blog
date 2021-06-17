@@ -72,6 +72,7 @@
         <link href="{% sass_src 'pages/css/topics.scss' %}" rel="stylesheet" type="text/css" />
         <link href="{% sass_src 'pages/css/index.scss' %}" rel="stylesheet" type="text/css" />
         <link href="{% sass_src 'pages/css/topic.scss' %}" rel="stylesheet" type="text/css" />
+        <link href="{% sass_src 'pages/css/recent_posts.scss' %}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.10.1/devicon.min.css">
     </head>
 
@@ -91,6 +92,21 @@
                 <div id="navbar" class="navbar-collapse collapse"?>
                      <ul class="nav navbar-nav">
                          <li><a href="{% url 'blogs:topics' %}">Topics</a></li>
+                         {% if user.is_authenticated %}
+                             <li class="dropdown">
+                                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Recent Posts
+                                 </a>
+
+                                 <div class="dropdown-menu">
+                                     {% for entry in recent_entries %}
+                                        <a class="dropdown-item" href="{% url 'blogs:edit_entry' entry.id %}">{{ entry.title }}</a>
+                                     {% empty %}
+                                        <a class="dropdown-item" href="#">No entries have been added yet.</a>
+                                     {% endfor %}
+                                 </div>
+                             </li>
+                         {% endif %}
                      </ul>
 
                     <ul class="nav navbar-nav navbar-right">
